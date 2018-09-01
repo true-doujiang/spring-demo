@@ -1,0 +1,12 @@
+<beans>
+	<bean id="u" class="com.bjsxt.dao.impl.UserDAOImpl" />
+	
+	<bean id="userService" class="com.bjsxt.service.UserService" >
+		<property name="userDAO" bean="u"/>
+	</bean>
+	
+	<!-- 放在userService下面就不行了   BeanFactory写的不好
+	<bean id="u" class="com.bjsxt.dao.impl.UserDAOImpl" />
+	 -->
+	
+</beans>
