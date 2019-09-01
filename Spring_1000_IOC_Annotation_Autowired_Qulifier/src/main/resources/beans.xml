@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <!-- 要用注释，上面加context -->
+
+
+    <!-- 使用注释 会启动4个bean处理注释在原码上的注释-->
+    <!-- (The implicitly registered post-processors include
+        AutowiredAnnotationBeanPostProcessor,
+        CommonAnnotationBeanPostProcessor,
+        PersistenceAnnotationBeanPostProcessor, as well as the aforementioned
+        RequiredAnnotationBeanPostProcessor.) -->
+    <!-- <context:annotation-config /> -->
+    <!-- 配置自定扫描的包 , 这个注解有上面那个注解的功能了 -->
+    <context:component-scan base-package="com.bjsxt"/>
+
+
+
+    <!--<bean id="u" class="com.bjsxt.dao.impl.UserDAOImpl">
+    </bean>
+
+    <bean id="u2" class="com.bjsxt.dao.impl.UserDAOImpl">
+    </bean>
+    -->
+
+    <!--<bean id="userService" class="com.bjsxt.service.UserService" >
+             使用@Autowired注入了
+    </bean>
+    -->
+
+</beans>

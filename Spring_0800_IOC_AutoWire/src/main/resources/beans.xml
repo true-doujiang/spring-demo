@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <bean name="userDAO" class="com.bjsxt.dao.impl.UserDAOImpl">
+  	<property name="daoId" value="1" />
+  </bean>
+  
+  <bean name="userDAO2" class="com.bjsxt.dao.impl.UserDAOImpl">
+  	<property name="daoId" value="2" />
+  </bean>
+	
+	<!-- autowire：自动装配
+		byName按照名字自动装配
+		byType按照类型自动装配(同一个对象有多个时，按类型装配，会报错) 用的并不多，容易出问题
+	 -->
+  <bean id="userService" class="com.bjsxt.service.UserService" autowire="byName">
+  		<!-- 这里不用  <property name="userDAO" ref="userDAO" />		-->
+  </bean>
+  
+
+</beans>

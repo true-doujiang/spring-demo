@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!-- 使用Set方式注入 -->
+    <!--   <bean name="userDAO" class="com.bjsxt.dao.impl.UserDAOImpl">
+          <property name="daoId" value="8"/>
+          <property name="daoStatus">
+              <value>注入</value>
+          </property>
+      </bean> -->
+    <!-- 使用构造方法方式注入简单属性-->
+    <bean name="userDAO" class="com.bjsxt.dao.impl.UserDAOImpl">
+        <constructor-arg value="123"/>
+        <constructor-arg value="good"/>
+    </bean>
+
+
+    <!-- 使用构造方法方式注入-->
+    <bean id="userService" class="com.bjsxt.service.UserService">
+        <!--
+            <property name="userDAO">
+                <ref bean="userDAO"/>
+            </property>
+             -->
+        <constructor-arg ref="userDAO"/>
+    </bean>
+
+
+</beans>

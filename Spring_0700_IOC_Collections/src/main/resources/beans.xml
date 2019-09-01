@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  	<bean name="userDAO" class="com.bjsxt.dao.impl.UserDAOImpl">
+		<property name="adminEmails">     <!-- 组装成一个属性文件 (java.util.Properties)-->
+		    <props>
+		        <prop key="administrator">administrator@example.org</prop>
+		        <prop key="support">support@example.org</prop>
+		        <prop key="development">development@example.org</prop>
+		    </props>
+		</property>
+	  	<property name="sets">  		  <!-- 组装成一个set集合 -->
+	  		<set>
+	  			<value>1</value>
+	  			<value>2</value>
+	  		</set>
+	  	</property>
+	  	<property name="lists">	   		  <!-- 数组同list -->
+	  		<list>
+	  			<value>1</value>
+	  			<value>2</value>
+	  			<value>3</value>
+	  		</list>
+	  	</property>
+	  	<property name="strs">
+	  		<list>
+	  			<value>456</value>
+	  			<value>字符串1</value>
+	  			<value>字符串2</value>
+	  			<value>字符串3</value>
+	  		</list>
+	  	</property>
+	  	<property name="maps">
+	  		<map>
+	  			<entry key="1" value="1"></entry>
+	  			<entry key="2" value="2"></entry>
+	  			<entry key="3" value="3"></entry>
+	  			<entry key="4" value="4"></entry>
+	  		</map>
+	  	</property>
+  	</bean>
+
+  <bean id="userService" class="com.bjsxt.service.UserService">
+  	<property name="userDAO">
+  		<ref bean="userDAO"/>
+  	</property>
+  </bean>
+
+
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- lazy-init="true"：当用到这个bean是才初始化它 u,  用到的情况很少很少 -->
+  <bean id="u" class="com.bjsxt.dao.impl.UserDAOImpl" lazy-init="true">
+  </bean>
+	
+	
+	<!-- init-method: 容器初始化时调用UserService类里的init方法, 所以UserService的构造器先执行
+		 destroy-method ：容器销毁时调用UserService类里的destroy方法
+	-->
+  <bean id="userService" class="com.bjsxt.service.UserService" autowire="byType"
+        init-method="initxml" destroy-method="destroyxml2">
+  		 
+  </bean>
+  
+
+</beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	
+	<!-- <context:annotation-config /> -->
+	<context:component-scan base-package="com.bjsxt"/>
+	
+	<!-- 第二种连接数据库的方法,使用 PropertyPlaceholderConfigurer -->	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+
+	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+				<!-- spring整合hibernate -->
+	
+	<!-- LocalSessionFactoryBean 		不可以使用annotation   都是spring提供的
+		 AnnotationSessionFactoryBean   可以使用annotation  它继承了LocalSessionFactoryBean
+		 hibernate的SessionFactory 只是一个接口
+	 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" /> 
+		<property name="annotatedClasses"> <!-- 哪些类被annotation了 -->
+			<list>
+				<value>com.bjsxt.model.User</value> 
+			</list>
+		</property>
+		<!-- 有个hibernateProperties属性、及set方法，接收properties类型的参数 
+			   相当于hibernate的配置文件了     hibernate.cfg.xml   -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>

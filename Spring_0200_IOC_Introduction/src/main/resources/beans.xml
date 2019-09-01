@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+  <!--
+	key:  http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	根据这个可去找xml文件的约束文件。就会给提示了。
+	-->
+  
+  <!-- 这个id也可以换成name -->
+  <bean id="u" class="com.bjsxt.dao.impl.UserDAOImpl">
+  </bean>
+  
+  <!--
+  <bean id="userService" class="com.bjsxt.service.UserService">
+  	<property name="userDAO" ref="u" />  		
+  </bean>  -->
+  <!-- 同上 -->
+  <bean id="userService" class="com.bjsxt.service.UserService">
+  		<property name="userDAO">
+  			<ref bean="u"/> 
+  		</property>  		
+  </bean>
+  
+  
+  
+</beans>

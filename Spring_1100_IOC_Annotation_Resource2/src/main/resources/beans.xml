@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <!-- 使用注释 会启动4个bean处理注释在原码上的注释
+        加了这个配置 就只能用jdk1.7了 spring 2.5.6 版本太低导致的
+        https://blog.csdn.net/catoop/article/details/49300853
+    -->
+    <context:annotation-config/>
+    <!-- 使用注释 会启动4个bean处理注释在原码上的注释-->
+    <context:component-scan base-package="com.bjsxt"/>
+
+    <bean id="userDAO" class="com.bjsxt.dao.impl.UserDAOImpl">
+    </bean>
+
+    <bean id="userDAO2" class="com.bjsxt.dao.impl.UserDAOImpl2">
+    </bean>
+
+    <bean id="userService" class="com.bjsxt.service.UserService">
+    </bean>
+
+</beans>
