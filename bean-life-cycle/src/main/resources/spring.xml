@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 注解处理器 -->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+
+    <!-- 我的bean -->
+    <bean name="userService" class="com.yhh.bean.life.service.UserService"
+          init-method="initMethod"
+          destroy-method="destroyMethod">
+        <property name="name" value="李光洙"></property>
+    </bean>
+
+
+    <!-- bean的后置处理器 -->
+    <bean class="com.yhh.bean.life.processor.CustomerBeanPostProcessor"/>
+
+</beans>
